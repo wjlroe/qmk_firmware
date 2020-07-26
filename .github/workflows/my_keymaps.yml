@@ -1,0 +1,21 @@
+name: Will Roe's keymaps
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install gcc unzip wget zip gcc-avr binutils-avr avr-libc dfu-programmer dfu-util gcc-arm-none-eabi binutils-arm-none-eabi libnewlib-arm-none-eabi
+      - name: Download submodules
+        run: |
+          make git-submodule
+      - name: Build firmware
+        run: make crkbd:will_plancklike
+      - name: Upload firmware
+        uses: actions/upload-artifact@master
+        with:
+          name: crkbd_rev1_will_plancklike.hex
+          path: crkbd_rev1_will_plancklike.hex
