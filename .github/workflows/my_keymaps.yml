@@ -40,3 +40,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: crkbd_rev1_will_plancklike.hex
           asset_name: crkbd_rev1_will_plancklike.hex
+          asset_content_type: text/plain
